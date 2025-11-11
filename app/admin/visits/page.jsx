@@ -1,0 +1,144 @@
+"use client";
+import Popup from "@/components/Popup";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+export default function AdminVisits() {
+  const [visits, setVisits] = useState([]);
+  const [form, setForm] = useState({
+    title: "",
+    industry:"",
+    description: "",
+    location: "",
+    date: "",
+    time: "",
+  });
+
+  // ✅ Fetch visits from Supabase
+  async function getVisits() {
+    const { data, error } = await supabase
+      .from("visits")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (!error) setVisits(data);
+  }
+
+  useEffect(() => {
+    getVisits();
+  }, []);
+
+  // ✅ Handle form submission
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const { data, error } = await supabase
+      .from("visits")
+      .insert([form])
+      .select();
+
+    if (error) {
+      console.error(error);
+      alert("Failed to add visit");
+      return;
+    }
+
+    // Update UI without refresh
+    setVisits([data[0], ...visits]);
+
+    // Reset form
+    setForm({
+    
+      title: "",
+      industry:"",
+      description: "",
+      location: "",
+      date: "",
+      time: "",
+    });
+
+    alert("Visit added!");
+  }
+
+  return (
+    <div className="p-8 bg-[#000000]  ">
+      <h1 className="text-2xl text-white font-bold mb-4">Admin – Add Visit</h1>
+
+      <div className="w-full max-w-2xl bg-[#0d0d0d] p-5 shadow rounded  "
+        style={{border:"1px solid #1f1f1f"}}>
+        <h1 className="text-2xl text-[white] font-bold mb-4 text-center">Add new visits/events</h1>
+      <form
+        onSubmit={handleSubmit}
+        className=" space-y-3"
+        >
+        <input
+          type="text"
+          placeholder="Visit Title"
+          className="border p-2 mb-3 w-full rounded"
+          value={form.title}
+          onChange={(e) => setForm({ ...form, title: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Industry Name"
+          className="border p-2 mb-3 w-full rounded"
+          value={form.industry}
+          onChange={(e) => setForm({ ...form, industry: e.target.value })}
+          required
+        />
+
+        <input
+          type="text"
+          placeholder="Location"
+          className="border p-2 mb-3 w-full rounded"
+          value={form.location}
+          onChange={(e) => setForm({ ...form, location: e.target.value })}
+          required
+        />
+
+        <textarea
+          placeholder="Description"
+          className="border p-2 mb-3 w-full rounded"
+          value={form.description}
+          onChange={(e) => setForm({ ...form, description: e.target.value })}
+        ></textarea>
+
+        <input
+          type="date"
+          placeholder="date (e.g. Monday)"
+          className="border p-2 mb-3 w-full rounded"
+          value={form.date}
+          onChange={(e) => setForm({ ...form, date: e.target.value })}
+          required
+        />
+
+        <input
+          type="text"
+          placeholder="Time (e.g. 10:00 AM)"
+          className="border p-2 mb-3 w-full rounded"
+          value={form.time}
+          onChange={(e) => setForm({ ...form, time: e.target.value })}
+          required
+          />
+
+        <button className="bg-[#1cca5b] text-white px-4 py-2 rounded w-full">
+          Add Visit
+        </button>
+      </form>
+      </div>
+
+      <h2 className="text-xl text-white font-bold mt-8 mb-4">Existing Visits</h2>
+
+      <div className="grid md:grid-cols-3 gap-4">
+        {visits.map((visit) => (
+          <div key={visit.id} className="p-4 bg-[#0d0d0d] shadow rounded" style={{border:"1px solid #1f1f1f"}}>
+            <h3 className="font-semibold text-white">{visit.title}</h3>
+            <p className="text-white">{visit.description}</p>
+            <p className="text-sm text-gray-600 text-white">{visit.industry + " - "+ visit.location}</p>
+            <p className="text-sm text-white">{visit.date} – {visit.time}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
