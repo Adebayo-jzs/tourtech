@@ -15,6 +15,9 @@ export default function RequestsClient({ requests }) {
   return (
     <div>
       {/* Dropdown Filter */}
+
+      {/* Table */}
+      <div className="table-container">
       <div className="flex items-center justify-end mb-4">
         <label className="text-white mr-2 font-semibold">Filter:</label>
         <select
@@ -29,9 +32,6 @@ export default function RequestsClient({ requests }) {
           <option value="Declined">Declined</option>
         </select>
       </div>
-
-      {/* Table */}
-      <div className="table-container">
         <table border="1" cellPadding="8">
           <thead>
             <tr>

@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Logo } from "@/components/logo";
 import { toast } from "react-toastify";
+import { supabase } from "@/lib/supabase";
 
 export default function AuthPage() {
   const [email, setEmail] = useState("");
@@ -29,7 +30,23 @@ export default function AuthPage() {
       if (res?.error) toast.error(res.error);
       else {
         toast.success("Login successful!");
-        router.push("/visits");
+        // router.push("/visits");
+          const { data: userData, error } = await supabase
+            .from("users")
+            .select("user_id, role_id")
+            .eq("email", email)
+            .single();
+
+          if (error) {
+            console.error("Error fetching user:", error);
+            router.push("/visits");
+            return;
+          }
+          if (userData.role_id === 1) {
+            router.push("/admin");
+          } else {
+            router.push("/visits");
+          }
       }
     } else {
       // 🆕 SIGNUP

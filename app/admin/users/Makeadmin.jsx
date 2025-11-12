@@ -18,6 +18,7 @@ export default function MakeAdmin({ req }) {
       if (error) throw error;
 
       toast.success("User is now an admin!");
+      setTimeout(() => window.location.reload(), 800);
     } catch (error) {
       toast.error("Failed to update role");
     } finally {

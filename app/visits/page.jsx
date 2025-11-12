@@ -178,8 +178,11 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import { MapPin, Calendar, Clock } from "lucide-react";
 import { toast } from "react-toastify";
+// import { getServerSession } from "next-auth";
+// import { redirect } from "next/navigation";
 
 export default function VisitsPage() {
+  
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -190,6 +193,7 @@ export default function VisitsPage() {
   useEffect(() => {
     if (status === "loading") return;
     if (!session) router.push("/auth");
+    // if (session.user.role_id === 1) router.push("/admin");
   }, [session, status, router]);
 
   // Fetch available visits
@@ -240,7 +244,7 @@ export default function VisitsPage() {
 
   return (
     <div className="min-h-screen bg-[#000000] p-6 ">
-      <div className="flex flex-col items-center mb-6">
+      <div className="flex flex-col items-center mb-6 mt-16">
         <h1 className="text-[#1cca5b] text-2xl font-bold text-center mb-2">
           Available Visits
         </h1>

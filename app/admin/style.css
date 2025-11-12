@@ -23,6 +23,7 @@ h1{
 .card-info{
   color: #1cca5b;
   font-weight: 900;
+  /* margin-bottom: 0; */
 }
 #accept{
     background-color: green;

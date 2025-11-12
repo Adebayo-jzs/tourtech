@@ -108,7 +108,7 @@ header nav button {
 }
 @media (max-width:768px) {
   .herotitle{
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 }
 
@@ -169,7 +169,7 @@ header nav button {
 .bg-background .icon {
   width: 64px;
   height: 64px;
-  color: #4f4;
+  color: #1cca5b;
   margin: 0 auto 1rem;
   display: block;
 }
@@ -206,7 +206,7 @@ header nav button {
 .feature-icon {
   width: 18px;
   height: 18px;
-  color: #4f4;
+  color: #1cca5b;
   flex-shrink: 0;
   margin-top: 3px;
 }
@@ -218,24 +218,24 @@ header nav button {
   text-align: center;
   padding: 0.75rem 1rem;
   border-radius: 8px;
-  background-color: #4f4;
+  background-color: #1cca5b;
   color: #fff;
   text-decoration: none;
   font-weight: 600;
   transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
-.full-width-button:hover { transform: translateY(-3px); background-color: #4f4; }
+.full-width-button:hover { transform: translateY(-3px); background-color: #1cca5b; }
 
 /* outline variation */
 .full-width-button.outline {
   background-color: transparent;
-  color: #4f4;
-  border: 2px solid #4f4;
+  color: #1cca5b;
+  border: 2px solid #1cca5b;
 }
 
 .full-width-button.outline:hover {
-  background-color: #4f4;
+  background-color: #1cca5b;
   color: #fff;
 }
 
@@ -333,7 +333,7 @@ header nav button {
 .bg-background .icon {
   width: 50px;
   height: 50px;
-  color: #4f4; /* bluish primary */
+  color: #1cca5b; /* bluish primary */
   margin-bottom: 1rem;
 }
 
