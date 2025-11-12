@@ -7,10 +7,10 @@ import { useRouter } from "next/navigation"
 const Index = () => {
   const router = useRouter()
   return (
-    <div className="bg-background px-5">
+    <div className="bg-background bg-[black] px-5">
       {/* Hero Section */}
-      <section className="p-5">
-        <h1 className="herotitle">Connect Industries with <br />Individuals & Institutions</h1>
+      <section className="p-5 pt-16">
+        <h1 className="herotitle mt-5">Connect Industries with <br />Individuals & Institutions</h1>
         <p> Connecting students and industries through a seamless online booking experience.
        <br />Simplify planning, manage schedules, and make learning <br />outside the classroom easy. </p>
         <div className="hero-buttons mt-3">

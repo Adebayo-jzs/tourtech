@@ -44,8 +44,8 @@ h1{
   border: 1px solid black;
 } */
 .table-container {
-  /* width: 100%; */
-  /* overflow-x: auto; ✅ Enables horizontal scroll */
+  width: 100%;
+  overflow-x: auto;
   background-color: #0d0d0d;
   padding: 20px;
     border: 1px solid #1f1f1f;

@@ -5,7 +5,7 @@ export default function ContactPage() {
   return (
     <div className="bg-black text-white min-h-screen flex flex-col items-center px-6 py-12">
       {/* Header Section */}
-      <div className="text-center mb-14">
+      <div className="text-center my-14 ">
         <h2 className="text-4xl font-bold mb-3">Get in Touch</h2>
         <p className="text-white max-w-md mx-auto">
           Have questions? We’d love to hear from you. Send us a message and

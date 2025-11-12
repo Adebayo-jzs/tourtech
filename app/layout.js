@@ -32,9 +32,8 @@ export default function RootLayout({ children }) {
       >
         <SessionProvider>
           {!hideNavbar && <Navbar/>}
-          {!hideNavbar && <main className="pt-16">{children}</main>}
+        {/* {children} */}
         {children}
-        
         <ToastContainer position="top-right" autoClose={3000} />
         </SessionProvider>
       </body>
