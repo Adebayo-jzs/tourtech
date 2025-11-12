@@ -3,7 +3,7 @@ import { LayoutDashboardIcon,PanelLeft,FileText,Users,Activity } from "lucide-re
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-
+import { signOut } from "next-auth/react";
 export default function AdminSidebar() {
   const [isOpen, setIsOpen] = useState(true);
   const pathname = usePathname();
@@ -55,6 +55,14 @@ export default function AdminSidebar() {
             <Users size={17} />
           {isOpen ? "Users" : ""}
         </Link>
+        {isOpen && 
+        <button
+          onClick={() => signOut()}
+          className="font-medium text-black bg-[#1cca5b] rounded py-2 px-3 hover:bg-[#1cca5cd5] mt-5 text-center transition"
+        >
+          Sign out
+        </button>
+        }
       </nav>
     </aside>
   );
