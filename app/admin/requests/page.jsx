@@ -20,12 +20,12 @@ export default async function RequestsTable() {
     console.error("Error fetching requests:", error.message);
     return <>
     <p className="text-red-500">Failed to load requests.</p>
-    <button className="text-white bg-[#1cca5b] px-3 py-2 mt-3 rounded">Refresh</button>
+    <button className="text-white bg-[#1cca5b] px-3 py-2 mt-3 rounded" onClick={window.location.reload()}>Refresh</button>
     </>;
   }
 
   return (
-    <div className="min-h-screen bg-black p-6">
+    <div className="min-h-screen bg-black p-1">
       <h1 className="text-3xl font-bold mb-6 text-white">Visit Requests</h1>
 
       {requests.length === 0 ? (
@@ -35,17 +35,32 @@ export default async function RequestsTable() {
             <div className="cards">
           <div className="card">
             <h1 className="card-title">Visits Booked</h1>
+            <p className="card-desc">Total number of requests</p>
             <p className="card-info">{requests.length}</p>
           </div>
           <div className="card">
-            <h1 className="card-title">Visits Booked</h1>
-            <p className="card-info">{requests.length}</p>
+            <h1 className="card-title">Accepted</h1>
+            <p className="card-desc">Total number of accepted visits</p>
+            <p className="card-info">
+              {requests.filter((req) => req.status === "Accepted").length}
+            </p>
           </div>
           <div className="card">
-            <h1 className="card-title">Visits Booked</h1>
-            <p className="card-info">{requests.length}</p>
+            <h1 className="card-title">Rejected</h1>
+            <p className="card-desc">Total number of rejected visits</p>
+            <p className="card-info" style={{color:"red"}}>
+              {requests.filter((req) => req.status === "Declined").length}
+            </p>
+          </div>
+          <div className="card">
+            <h1 className="card-title">Pending requests</h1>
+            <p className="card-desc">Total number of pending requests</p>
+            <p className="card-info ">
+              {requests.filter((req) => req.status === "Pending").length}
+            </p>
           </div>
         </div>
+        <div className="table-container">
           <table border="1" cellPadding="8">
           <thead>
             <tr>
@@ -80,7 +95,7 @@ export default async function RequestsTable() {
                   {req.status || "Pending"}
                 </td>
 
-                <td className="p-3 text-center">
+                <td className="p-3">
                   {/* <form>
                     <button
                       type="submit"
@@ -97,13 +112,20 @@ export default async function RequestsTable() {
                       Decline
                     </button>
                   </form> */}
-                  <ActionButtons req={req}/>
+                  {(req.status === "Pending")?(
+                    <ActionButtons req={req}/>
+                  ):(
+                    <button className="bg-black text-white px-3 mt-2 py-1 rounded" style={{cursor:"not-allowed"}}>
+                    Done
+                    </button>
+                  )}
                 </td>
               </tr>
               );
             })}
           </tbody>
         </table>
+        </div>
          </div>
       )}
     </div>

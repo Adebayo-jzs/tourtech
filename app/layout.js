@@ -4,6 +4,7 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import Navbar from "@/components/Navbar";
+import { usePathname } from "next/navigation";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,6 +21,9 @@ const geistMono = Geist_Mono({
 // };
 
 export default function RootLayout({ children }) {
+
+  const pathname = usePathname();
+  const hideNavbar = pathname.startsWith("/admin");
   return (
     <html lang="en">
       <body
@@ -27,9 +31,10 @@ export default function RootLayout({ children }) {
         style={{backgroundColor:"black"}}
       >
         <SessionProvider>
-          <Navbar/>
-        {/* {children} */}
-        <main className="pt-16">{children}</main>
+          {!hideNavbar && <Navbar/>}
+          {!hideNavbar && <main className="pt-16">{children}</main>}
+        {children}
+        
         <ToastContainer position="top-right" autoClose={3000} />
         </SessionProvider>
       </body>

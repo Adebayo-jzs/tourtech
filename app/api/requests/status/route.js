@@ -23,7 +23,7 @@ export async function POST(request) {
 
     // ✅ 2. Send Email using Resend
     await resend.emails.send({
-      from: "Industrial Visit <no-reply@adebayodv.com.ng>",
+      from: "Industrial Visit <no-reply@tourtech.name.ng>",
       to: email,
       subject: `Your Visit Request Has Been ${status}`,
       html: `

@@ -23,7 +23,7 @@ export default async function AdminOverview() {
     if (error || !requests) {
     return (
       <div>
-        <h1 className="text-3xl font-bold mb-4">Overview</h1>
+        {/* <h1 className="text-3xl font-bold mb-4">Overview</h1> */}
         <p className="text-center text-gray-500">Overview Unavailale.</p>
       </div>
     );
@@ -37,7 +37,7 @@ export default async function AdminOverview() {
       <h1 className="text-3xl text-white font-bold mb-4">Overview</h1>
       <h1 className="text-white font-bold mb-4">Welcome Admin, {session.user.name}</h1>
       {/* <p>Role ID: {session.user.role_id}</p> */}
-      {requests.length === 0 ? (
+      {requests.length === 0 || visits.length === 0 || users.length === 0 ? (
         <p className="text-center text-white">Overiew Unavailable.</p>
       ) : (
         

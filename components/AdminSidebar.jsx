@@ -47,8 +47,8 @@ export default function AdminSidebar() {
           {isOpen ? "Visits" : ""}
         </Link>
 
-        <Link href="/admin/profiles" className={`block p-2 flex gap-2 items-center rounded hover:bg-[#121212] ${
-            pathname === "/admin/profiles"
+        <Link href="/admin/users" className={`block p-2 flex gap-2 items-center rounded hover:bg-[#121212] ${
+            pathname === "/admin/users"
               ? "border-green-400 bg-[#1a1a1a]   text-[#1cca5b]"
               : "border-transparent"
           }`}>

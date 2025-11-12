@@ -51,14 +51,14 @@
 
 "use client";
 
-import { useState } from "react";
+// import { useState } from "react";
 import { toast } from "react-toastify";
 
 export default function ActionButtons({ req }) {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const handleAction = async (status) => {
-    setLoading(true); // disable buttons
+    // setLoading(true); // disable buttons
 
     try {
       const res = await fetch("/api/requests/status", {
@@ -81,28 +81,29 @@ export default function ActionButtons({ req }) {
         setTimeout(() => window.location.reload(), 800); // refresh table
       } else {
         toast.error("Failed: " + data.message);
-        setLoading(false); // re-enable buttons
+        // setLoading(false); // re-enable buttons
       }
     } catch (err) {
       toast.error("Something went wrong!");
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 ">
+      
       <button
         onClick={() => handleAction("Accepted")}
-        className="bg-green-600 text-white px-3 py-1 rounded disabled:opacity-50"
-        disabled={loading}
+        className="bg-green-600 text-white px-3 m-2 py-1 rounded "
+        // disabled={loading}
       >
         Accept
       </button>
 
       <button
         onClick={() => handleAction("Declined")}
-        className="bg-red-600 text-white px-3 py-1 rounded disabled:opacity-50"
-        disabled={loading}
+        className="bg-red-600 text-white px-3 mt-2 py-1 rounded "
+        // disabled={loading}
       >
         Decline
       </button>
