@@ -42,7 +42,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed  w-full glass-effect shadow-2xl z-50 border-b border-gray-800" >
+      <nav className="fixed  w-full bg-black glass-effect shadow-2xl z-50 border-b border-gray-800" >
         <div className="container mx-auto px-6 py-2 flex justify-between items-center">
           <Link href="/" className="text-2xl flex items-center text-white font-bold" >
             <Logo size={50}/>Tour<span style={{ color: "#1cca5b" }} >Tech</span>
