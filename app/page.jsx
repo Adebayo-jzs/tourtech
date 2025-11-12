@@ -1,29 +1,32 @@
+"use client"
 import React from "react";
 import "./App.css";
 import { Building2, Users, Calendar, CheckCircle2, Shield } from "lucide-react";
+import { useRouter } from "next/navigation"
 
 const Index = () => {
+  const router = useRouter()
   return (
-    <div className="bg-background">
+    <div className="bg-background px-5">
       {/* Hero Section */}
-      <section>
-        <h1>Connect Industries with <br />Individuals & Institutions</h1>
+      <section className="p-5">
+        <h1 className="herotitle">Connect Industries with <br />Individuals & Institutions</h1>
         <p> Connecting students and industries through a seamless online booking experience.
        <br />Simplify planning, manage schedules, and make learning <br />outside the classroom easy. </p>
-        <div className="hero-buttons">
-          <button className="primary">Find Industrial Visits</button>
-          <button className="outline">List Your Industry</button>
+        <div className="hero-buttons mt-3">
+          <button className="primary" onClick={() => router.push("/visits")}>Find Industrial Visits</button>
+          {/* <button className="outline">List Your Industry</button> */}
         </div>
       </section>
 
       {/* Two-Sided Value Prop */}
-<section className="two-sided bg-secondary">
-  <div className="container">
-    <div className="grid-2 gap-12">
+<section className="two-sided bg-secondary px-5">
+  <div>
+    <div className="grid grid-cols-1 lg:grid-cols-2   gap-6">
       <div className="card">
         <div className="card-content">
           <Users className="icon" />
-          <h2 className="card-title">For Students & Institutions</h2>
+          <h2 className="card-title">For Individuals</h2>
           <p className="card-sub">Discover and book educational industrial visits with ease</p>
 
           <ul className="feature-list">
@@ -46,7 +49,7 @@ const Index = () => {
           </ul>
 
           <div className="mt-6">
-            <a href="/events" className="full-width-button">Explore Visits</a>
+            <a href="/explore" className="full-width-button">Explore Visits</a>
           </div>
         </div>
       </div>
@@ -64,7 +67,7 @@ const Index = () => {
             </li>
             <li className="feature-item">
               <CheckCircle2 className="feature-icon" />
-              <span>Reach thousands of educational institutions</span>
+              <span>Reach thousands of students and individuals</span>
             </li>
             <li className="feature-item">
               <CheckCircle2 className="feature-icon" />
@@ -77,7 +80,7 @@ const Index = () => {
           </ul>
 
           <div className="mt-6">
-            <a href="/list-facility" className="full-width-button outline">List Your Facility</a>
+            <a href="/list-facility" className="full-width-button outline">List Your Industry</a>
           </div>
         </div>
       </div>
@@ -87,16 +90,16 @@ const Index = () => {
 
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4">
-        <div className="container">
+      <section id="features" className="py-20 p-5">
+        <div>
           <div className="text-center mb-16">
             <h2>Powerful Features for Everyone</h2>
             <p>Everything you need to discover or manage industrial visits</p>
           </div>
 
-          <div className="grid-container">
-            <div className="card">
-              <div className="card-content">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div>
+              <div>
                 <Calendar className="icon" />
                 <h3>Smart Scheduling</h3>
                 <p>
@@ -106,8 +109,8 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="card">
-              <div className="card-content">
+            <div>
+              <div>
                 <Users className="icon" />
                 <h3>Easy Discovery</h3>
                 <p>
@@ -117,8 +120,8 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="card">
-              <div className="card-content">
+            <div>
+              <div>
                 <Shield className="icon" />
                 <h3>Safe & Secure</h3>
                 <p>
@@ -132,10 +135,10 @@ const Index = () => {
       </section>
 
       {/* How It Works */}
-      <section>
+      <section className="p-5">
         <h2>How It Works</h2>
-        <p>Three simple steps to connect and visit</p>
-        <div className="grid-container">
+        <p className="mb-10">Three simple steps to connect and visit</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
           <div>
             <div className="step-circle">1</div>
             <h3>Browse & Discover</h3>
@@ -155,9 +158,10 @@ const Index = () => {
       </section>
 
       {/* Benefits */}
-      <section>
+      <section className="p-5">
         <h2>Why Thousands Trust TourTech</h2>
-        <div className="grid-container">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-3">
+        {/* <div className="grid-container"> */}
           {[
             { title: "Save Time & Effort", text: "Book visits in minutes, not days" },
             { title: "Verified Facilities", text: "All industries are verified and rated" },
@@ -168,8 +172,8 @@ const Index = () => {
           ].map(({ title, text }) => (
             <div className="benefit" key={title}>
               <CheckCircle2 className="text-primary" />
-              <div>
-                <h4>{title}</h4>
+              <div className="text-start mb-0">
+                <h4 style={{fontWeight:700}}>{title}</h4>
                 <p>{text}</p>
               </div>
             </div>
@@ -184,7 +188,7 @@ const Index = () => {
           Whether you're looking for industrial visits or want to showcase your
           facility, <br />join TourTech today.
         </p>
-        <div className="hero-buttons">
+        <div className="hero-buttons mt-7">
           <button className="primary">Find Visits</button>
           <button className="outline">List Your Industry</button>
         </div>

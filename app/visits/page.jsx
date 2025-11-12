@@ -177,6 +177,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import { MapPin, Calendar, Clock } from "lucide-react";
+import { toast } from "react-toastify";
 
 export default function VisitsPage() {
   const { data: session, status } = useSession();
@@ -223,15 +224,22 @@ export default function VisitsPage() {
         email: user.email,
       },
     ]);
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Visit booked successfully!");
+    }
 
-    if (error) setMessage(error.message);
-    else setMessage("Visit booked successfully!");
+    // if (error) toast.error(error.message);
+    // else toast.success("Visit booked successfully!");
+    // // if (error) setMessage(error.message);
+    // // else setMessage("Visit booked successfully!");
   };
 
   if (status === "loading") return <p className="text-center text-white">Loading...</p>;
 
   return (
-    <div className="min-h-screen bg-[#000000] p-6">
+    <div className="min-h-screen bg-[#000000] p-6 ">
       <div className="flex flex-col items-center mb-6">
         <h1 className="text-[#1cca5b] text-2xl font-bold text-center mb-2">
           Available Visits
@@ -243,7 +251,7 @@ export default function VisitsPage() {
         )}
       </div>
 
-      {message && <p className="text-center text-green-500 mb-4">{message}</p>}
+      {/* {message && <p className="text-center text-green-500 mb-4">{message}</p>} */}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {visits.map((visit) => (
