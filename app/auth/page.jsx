@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 // import { supabase } from "@/lib/supabaseClient";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Logo } from "@/components/logo";
 import { toast } from "react-toastify";
@@ -39,7 +39,9 @@ export default function AuthPage() {
 
           if (error) {
             console.error("Error fetching user:", error);
-            router.push("/visits");
+            toast.error("Login failed");
+            signOut();
+            // router.push("/visits");
             return;
           }
           if (userData.role_id === 1) {

@@ -59,6 +59,7 @@ export default function AdminSidebar() {
         <button
           onClick={() => signOut()}
           className="font-medium text-black bg-[#1cca5b] rounded py-2 px-3 hover:bg-[#1cca5cd5] mt-5 text-center transition"
+          style={{cursor:"not-allowed"}}
         >
           Sign out
         </button>
