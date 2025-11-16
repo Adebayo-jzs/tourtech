@@ -243,8 +243,8 @@ export default function VisitsPage() {
   if (status === "loading") return <p className="text-center text-white">Loading...</p>;
 
   return (
-    <div className="min-h-screen bg-[#000000] p-6 ">
-      <div className="flex flex-col items-center mb-6 mt-16">
+    <div className="min-h-screen bg-[#000000] p-6 md:px-30">
+      <div className="flex flex-col items-center mb-6 mt-20">
         <h1 className="text-[#1cca5b] text-2xl font-bold text-center mb-2">
           Available Visits
         </h1>

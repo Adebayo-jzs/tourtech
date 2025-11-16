@@ -84,6 +84,7 @@ export default function Navbar() {
                 Explore Visits
               </a>
             )}
+            {session && <p className="text-white ms-10">{session.user.name}</p>}
             {session ? (
               <button
                 onClick={() => signOut()}
@@ -105,7 +106,7 @@ export default function Navbar() {
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((s) => !s)}
-            className="md:hidden text-gray-300 "
+            className="md:hidden text-gray-300"
           >
             {mobileOpen ? (
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

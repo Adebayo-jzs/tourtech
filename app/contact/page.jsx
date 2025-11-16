@@ -1,7 +1,36 @@
-import React from "react";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+ 
 
+
+
+"use client"
+
+import React, { useState } from "react";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { toast } from "react-toastify";
 export default function ContactPage() {
+  const [loading,setLoading] = useState(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const formData = {
+      name:e.target.name.value,
+      email:e.target.email.value,
+      title:e.target.title.value,
+      message:e.target.message.value,
+    }
+    const res = await fetch ("/api/contact", {
+      method:"POST",
+      headers:{"Content-Type": "application/json"},
+      body:JSON.stringify(formData),
+    });
+    setLoading(false);
+    if (res.ok){ 
+      toast.success("Message sent successfully")
+      e.target.reset();
+    }
+    else toast.error("Couldn't send message");
+  };
   return (
     <div className="bg-black text-white min-h-screen flex flex-col items-center px-6 py-12 ">
       {/* Header Section */}
@@ -18,32 +47,41 @@ export default function ContactPage() {
         {/* Contact Form */}
         <div className="bg-[#111] p-8 rounded-2xl shadow-lg flex-1">
           <h3 className="text-lg font-semibold mb-4">Send Us a Message</h3>
-          <form className="flex flex-col gap-4">
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Your name"
+              name="name"
+              required
+              placeholder="Name"
               className="bg-[#1a1a1a] border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
             />
             <input
               type="email"
-              placeholder="your@email.com"
+              name="email"
+              required
+              placeholder="Email"
               className="bg-[#1a1a1a] border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
             />
             <input
               type="text"
-              placeholder="Your company name"
+              name="title"
+              required
+              placeholder="Message Title"
               className="bg-[#1a1a1a] border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
             />
             <textarea
-              placeholder="Tell us about your needs..."
+              placeholder="Message"
+              name="message"
+              required
               rows="4"
               className="bg-[#1a1a1a] border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
             ></textarea>
             <button
               type="submit"
-              className="bg-green-500 text-black font-semibold rounded-lg py-2 mt-2 transition hover:scale-105 hover:shadow-[0_0_15px_#22c55e]"
+              className="bg-green-500 text-black font-semibold rounded-lg py-2 mt-2 transition   "
             >
-              Send Message
+              {/* {loading? ? "Sending...":"Send Message"} */}
+              {loading ? "Sending...":"Send Message"}
             </button>
           </form>
         </div>
@@ -64,8 +102,8 @@ export default function ContactPage() {
               <Mail className="text-green-500" />
               <div>
                 <h4 className="font-semibold text-green-500">Email</h4>
-                <p className="text-white">contact@tourtech.com</p>
-                <p className="text-white">support@tourtech.com</p>
+                <p className="text-white">tourtech@gmail.com</p>
+                <p className="text-white">feedback@tourtech.name.ng</p>
               </div>
             </div>
 
@@ -73,12 +111,12 @@ export default function ContactPage() {
               <Phone className="text-green-500" />
               <div>
                 <h4 className="font-semibold text-green-500">Phone</h4>
-                <p className="text-white">+1 (555) 123-4567</p>
-                <p className="text-white">Mon–Fri 9am–6pm EST</p>
+                <p className="text-white">09040107857</p>
+                <p className="text-white">Mon–Fri 9am–6pm </p>
               </div>
             </div>
 
-            <div className="flex items-start gap-3">
+            {/* <div className="flex items-start gap-3">
               <MapPin className="text-green-500" />
               <div>
                 <h4 className="font-semibold text-green-500">Office</h4>
@@ -86,10 +124,10 @@ export default function ContactPage() {
                   123 Business Street <br /> Tech City, TC 12345
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
 
-          <div className="bg-[#111] p-6 rounded-xl shadow-md">
+          {/* <div className="bg-[#111] p-6 rounded-xl shadow-md">
             <div className="flex items-start gap-3">
               <Clock className="text-green-500" />
               <div>
@@ -99,7 +137,7 @@ export default function ContactPage() {
                 <p className="text-white">Sunday: Closed</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -107,9 +145,9 @@ export default function ContactPage() {
       <div className="mt-20 text-center">
         <h3 className="text-2xl font-bold mb-2">Ready to Get Started?</h3>
         <p className="text-white mb-4 max-w-md mx-auto">
-          Join hundreds of individuals already using TourTech to finf indudtrial and educational visits
+          Join hundreds of individuals already using TourTech to find indudtrial and educational visits
         </p>
-        <button className="bg-green-500 text-black font-semibold px-6 py-2 rounded-lg hover:bg-green-400 hover:scale-105 hover:shadow-[0_0_15px_#22c55e] transition">
+        <button className="bg-green-500 text-black font-semibold px-6 py-2 rounded-lg hover:bg-green-400    transition">
           Get Started
         </button>
       </div>
